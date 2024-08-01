@@ -22,3 +22,20 @@
     font-weight: 600;
     color: #393e46;
 }
+
+.itemButton{
+    background-color: #29bb89;
+    border: none;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.buttonContainer{
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+}
