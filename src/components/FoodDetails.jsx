@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function FoodDetails({ foodId }) {
   const [food, setFood] = useState({});
-  const [isLoard, setIsLoard] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const URL = `https://api.spoonacular.com/recipes/${foodId}/information`;
   const API_KEY = "ee5bdc0c495a45eb9b9093bcde4393d1";
   useEffect(() => {
@@ -11,7 +11,7 @@ export default function FoodDetails({ foodId }) {
       const data = await res.json();
       console.log(data);
       setFood(data);
-      setIsLoard(false);
+      setIsLoading(false);
     }
     fetchFood();
   }, [foodId]);
@@ -35,13 +35,15 @@ export default function FoodDetails({ foodId }) {
           💲<span>{food.pricePerServing} Per servings</span>
         </div>
       </div>
+      <h2>Instructions</h2>
       <div>
-        <h2>Instructions</h2>
-        {isLoard
-          ? "Loard..."
-          : food.analyzedInstructions[0].steps.map((step) => (
-              <li>{step.step}</li>
-            ))}
+        <ol>
+          {isLoading
+            ? "Loard..."
+            : food.analyzedInstructions[0].steps.map((step) => (
+                <li>{step.step}</li>
+              ))}
+        </ol>
       </div>
     </div>
   );
